@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Usuario\Desktop\publicacion Api Mantenimiento Lixandro</_PublishTargetUrl>
+    <History>True|2021-10-27T23:14:54.0476350Z;True|2021-10-27T17:44:20.3445613-05:00;True|2021-10-27T17:20:29.9082631-05:00;True|2021-10-27T17:19:58.9517885-05:00;True|2021-10-27T16:41:50.4592622-05:00;True|2021-10-27T15:42:27.7255720-05:00;True|2021-10-22T18:10:58.1901044-05:00;</History>
+  </PropertyGroup>
+</Project>

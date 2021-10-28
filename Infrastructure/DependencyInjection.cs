@@ -58,10 +58,9 @@ namespace Infrastructure
             #region Repositories
 
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>()
-                    .AddScoped<IClientRepository, ClientRepository>()
+                  //.AddScoped<IClientRepository, ClientRepository>()
                     .AddScoped<ICategoriaRepository, CategoriaRepository>();
                     
-
             #endregion
 
             return services;

@@ -15,5 +15,6 @@ namespace Application.Interfaces.IRepositories
         Task<(ServiceStatus, string,  DetalleCategoriaResponse)> GetDetalleCategoria(int idcategoria);
         Task<(ServiceStatus, string, List<CategoriaResponseAll>)> GetExportarExcel();
         Task<(ServiceStatus, string)> AddNewCategory(NewCategory request);
+        Task<(ServiceStatus, string)> DeleteCategory(DeleteCategory request);
    }
 }

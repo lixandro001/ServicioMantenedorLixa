@@ -15,7 +15,6 @@ namespace Application
         {
             // Services
             services.AddScoped<IAuthenticationService, AuthenticationService>()
-                    .AddScoped<IClientService, ClientService>()
                     .AddScoped<ICategoriaService, CategoriaService>();
             
 

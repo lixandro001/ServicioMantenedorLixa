@@ -20,35 +20,7 @@ namespace serviciosMantenimiento.Middlewares.ErrorMiddlewares
             _next = next;
         }
 
-
-        //public async Task InvokeAsync(HttpContext context, IUserManagementService service)
-        //{
-        //    if (!context.User.Identity.IsAuthenticated)
-        //    {
-        //        // We skip to the next middleware if the endpoint has been flagged as not authenticated,
-        //        // usually happens if the endpoint has the decorator AllowAnonymous.
-        //        await next.Invoke(context);
-
-        //        return;
-        //    }
-
-        //    var _user = context.User.GetUser();
-
-        //    var isActive = await service.IsUserActiveAsync(_user.Estado);
-
-        //    if (!isActive)
-        //    {
-        //        context.Response.StatusCode = StatusCodes.Status403Forbidden;
-        //        context.Response.ContentType = "application/json";
-        //        await context.Response.WriteAsync(JsonConvert.SerializeObject(MessageResult.Of(
-        //            "Acceso de usuario ha sido desactivado")));
-
-        //        return;
-        //    }
-
-        //    await next.Invoke(context);
-        //}
-
+      
         public async Task Invoke(HttpContext context)
         {
             try

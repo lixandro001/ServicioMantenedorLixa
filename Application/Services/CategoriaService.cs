@@ -70,10 +70,22 @@ namespace Application.Services
                     );
 
             return MessageResult.Of(message);
-
         }
 
+        public async Task<MessageResult> DeleteCategory(DeleteCategory request)
+        {
+            var (status, message) = await categoriaRepository.DeleteCategory(request);
 
+            if (status != ServiceStatus.Ok)
+                throw new ErrorHandler(
+                        status == ServiceStatus.FailedValidation
+                        ? HttpStatusCode.BadRequest
+                        : HttpStatusCode.InternalServerError
+                    , message
+                    );
+
+            return MessageResult.Of(message);
+        }
 
         public async Task<byte[]> GetExportarExcel()
         {

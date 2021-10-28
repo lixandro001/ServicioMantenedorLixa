@@ -133,9 +133,6 @@ namespace Infrastructure.Repositories
             return (ServiceStatus.Ok, null, detalle);
          }
          
-         
-        //Task<(ServiceStatus, string)> AddNewCategory(NewCategory request);
-
         public async Task<(ServiceStatus,string)> AddNewCategory(NewCategory request)
         {
             try
@@ -152,11 +149,11 @@ namespace Infrastructure.Repositories
                     };
 
                     var Dr = Ado.ExecNonQueryProc("usp_agregar_categoria", Parameters);
-                    
+
                     var mensaje = Convert.ToString(Parameters[2].Value);
                     var valor = Convert.ToInt32(Parameters[3].Value);
-    
-                    if (valor==0)
+
+                    if (valor == 0)
                     {
                         return (ServiceStatus.FailedValidation, mensaje);
                     }
@@ -164,13 +161,47 @@ namespace Infrastructure.Repositories
                     await Task.Delay(1);
                     return (ServiceStatus.Ok, mensaje);
                 }
-       
+
             }
             catch (Exception e)
             {
                 return (ServiceStatus.InternalError, e.Message);
             }
-             
+        }
+
+        public async Task<(ServiceStatus, string)> DeleteCategory(DeleteCategory request)
+        {
+            try
+            {
+                using (var Ado = new Ado.SQLServer(connectionString))
+                {
+                    var Parameters = new SqlParameter[]
+                    {
+                        new SqlParameter{ ParameterName = "@idcategoria", SqlDbType = SqlDbType.Int, SqlValue = request.IdCategory },
+                        new SqlParameter { ParameterName = "@mensaje", SqlDbType = SqlDbType.VarChar,Size=50, SqlValue = "", Direction= ParameterDirection.InputOutput},
+                        new SqlParameter { ParameterName = "@valor", SqlDbType = SqlDbType.Int,SqlValue=0, Direction= ParameterDirection.InputOutput},
+
+                    };
+
+                    var Dr = Ado.ExecNonQueryProc("usp_eliminar_categoria", Parameters);
+
+                    var mensaje = Convert.ToString(Parameters[1].Value);
+                    var valor = Convert.ToInt32(Parameters[2].Value);
+
+                    if (valor == 0)
+                    {
+                        return (ServiceStatus.FailedValidation, mensaje);
+                    }
+
+                    await Task.Delay(1);
+                    return (ServiceStatus.Ok, mensaje);
+                }
+
+            }
+            catch (Exception e)
+            {
+                return (ServiceStatus.InternalError, e.Message);
+            }
         }
 
 

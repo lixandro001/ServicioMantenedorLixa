@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Application.Interfaces.IServices
 {
     public interface ICategoriaService
@@ -17,5 +18,6 @@ namespace Application.Interfaces.IServices
 
         Task<byte[]> GetExportarExcel();
         Task<MessageResult> AddNewCategory(NewCategory request);
+        Task<MessageResult> DeleteCategory(DeleteCategory request);
     }
 }

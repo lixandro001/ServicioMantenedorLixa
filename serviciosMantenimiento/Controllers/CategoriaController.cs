@@ -40,6 +40,12 @@ namespace serviciosMantenimiento.Controllers
             return Ok(await categoriaService.AddNewCategory(request));
         }
 
+        [HttpPost("eliminar-categoria")]
+        public async Task<ActionResult> DeleteCategory(DeleteCategory request)
+        {
+            return Ok(await categoriaService.DeleteCategory(request));
+        }
+
         [HttpGet("exportar-excel")]
         public async Task<IActionResult> GetExportarExcel()
         {
@@ -49,7 +55,6 @@ namespace serviciosMantenimiento.Controllers
             {
                 FileDownloadName = "excel.xlsx"
             };
-
         }
 
         [HttpGet("exportar-excel-base64")]

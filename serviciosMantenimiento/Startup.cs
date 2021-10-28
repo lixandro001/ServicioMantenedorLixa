@@ -40,8 +40,9 @@ namespace serviciosMantenimiento
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Demo lixa", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "demo", Version = "v1" });
             });
+             
 
             #region Domain
 
@@ -137,7 +138,7 @@ namespace serviciosMantenimiento
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(config => config.SwaggerEndpoint("/swagger/v1/swagger.json", "API Suiza Result Movil v1"));
+            app.UseSwaggerUI(config => config.SwaggerEndpoint("/swagger/v1/swagger.json", "API  Result  v1"));
         }
 
     }

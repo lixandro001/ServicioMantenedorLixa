@@ -14,15 +14,16 @@ namespace Infrastructure.Repositories
 {
     class AuthenticationRepository: IAuthenticationRepository
     {
-        private readonly string connectionString;   
+        
+        private readonly string connectionString;
         private readonly string storeSchema;
-       // private readonly IConfiguration Configuration;
+        //private readonly IConfiguration Configuration;
 
         public AuthenticationRepository(IConfiguration configuration)
-        {         
+        {
             connectionString = configuration.GetConnectionString("DBConnection"); //para obtener la cadena conexion 
-        }     
-         
+        }
+
         public async Task<(ServiceStatus, string, UserMe)> Auth(AuthPayload payload)
         {
             //var user = new UserMe(payload.Username, payload.Password);
