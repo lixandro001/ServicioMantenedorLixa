@@ -22,3 +22,4 @@ C:\Users\Usuario\Desktop\fuentes de react js\curso de react js\serviciosMantenim
 C:\Users\Usuario\Desktop\fuentes de react js\curso de react js\serviciosMantenimiento\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Desktop\fuentes de react js\curso de react js\serviciosMantenimiento\Application\obj\Debug\netcoreapp3.1\Application.dll
 C:\Users\Usuario\Desktop\fuentes de react js\curso de react js\serviciosMantenimiento\Application\obj\Debug\netcoreapp3.1\Application.pdb
+C:\Users\Usuario\Desktop\fuentes de react js\curso de react js\serviciosMantenimiento\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete

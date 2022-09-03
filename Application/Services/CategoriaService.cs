@@ -41,7 +41,24 @@ namespace Application.Services
             return result;
         }
 
-         public async  Task<DetalleCategoriaResponse> GetDetalleCategoria(int idcategoria)
+
+         
+       public async Task<List<CategoriaResponse>> GetListCategoriaCombo()
+        {
+            var (status, message, result) = await categoriaRepository.GetListCategoriaCombo();
+
+            if (status != ServiceStatus.Ok)
+                throw new ErrorHandler(
+                        status == ServiceStatus.FailedValidation
+                        ? HttpStatusCode.BadRequest
+                        : HttpStatusCode.InternalServerError
+                    , message
+                    );
+
+            return result;
+        }
+
+        public async  Task<DetalleCategoriaResponse> GetDetalleCategoria(int idcategoria)
          {
             var (status, message, result) = await categoriaRepository.GetDetalleCategoria(idcategoria);
 

@@ -14,6 +14,8 @@ namespace Application.Interfaces.IServices
     {
         Task<Pagination<CategoriaResponse>> GetListCategoria(string query, string user, int? page);
 
+        Task<List<CategoriaResponse>> GetListCategoriaCombo();
+
         Task<DetalleCategoriaResponse> GetDetalleCategoria(int idcategoria);
 
         Task<byte[]> GetExportarExcel();

@@ -24,9 +24,7 @@ namespace Infrastructure.Repositories
             Number = 12;
             connectionString = configuration.GetConnectionString("DBConnection"); //para obtener la cadena conexion 
         }
-
-
-
+         
         public async Task<(ServiceStatus, string, Pagination<CategoriaResponse>)> GetListCategoria(string query, string user, int? page = 1)
         {
             var list = new List<CategoriaResponse>();
@@ -97,8 +95,45 @@ namespace Infrastructure.Repositories
         }
 
 
+        public async Task<(ServiceStatus, string, List<CategoriaResponse>)> GetListCategoriaCombo()
+        {
+            var list = new List<CategoriaResponse>();
+            using (var Ado = new Ado.SQLServer(connectionString))
+            {
+                try
+                {
+                    var Dr = Ado.ExecDataReaderProc("usp_listar_categoria_combo", null);
+                    if (Dr.HasRows == false)
+                    {
+                        return (ServiceStatus.FailedValidation, "no hay datos", null);
+                    }
 
-         public async Task<(ServiceStatus, string, DetalleCategoriaResponse)> GetDetalleCategoria(int idcategoria)
+                    while (Dr.Read())
+                    {  
+                        var entity = new CategoriaResponse();
+
+                        if (Dr["idcategoria"] != DBNull.Value) { entity.idcategoria = Convert.ToInt32(Dr["idcategoria"]); }
+                        if (Dr["nombre"] != DBNull.Value) { entity.nombreCategoria = (string)Dr["nombre"]; }
+                        if (Dr["descripcion"] != DBNull.Value) { entity.descripcion = (string)Dr["descripcion"]; }
+                        
+                        list.Add(entity);
+                    }
+
+                    Dr.Close();
+                }
+                catch (Exception ex)
+                {
+                    return (ServiceStatus.InternalError, $"Problemas Internos de aplicación... { ex.Message }", null);
+                }
+            }
+            await Task.Delay(1);
+
+            return (ServiceStatus.Ok, null, list);
+        }
+
+
+
+        public async Task<(ServiceStatus, string, DetalleCategoriaResponse)> GetDetalleCategoria(int idcategoria)
          {
             var detalle = new DetalleCategoriaResponse();
 

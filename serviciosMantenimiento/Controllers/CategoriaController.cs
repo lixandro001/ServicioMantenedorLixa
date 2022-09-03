@@ -33,6 +33,15 @@ namespace serviciosMantenimiento.Controllers
             return Ok(await categoriaService.GetListCategoria(query, user, page));
         }
 
+       
+        [HttpGet("listado-categoria-combo")]
+        public async Task<IActionResult> GetListCategoriaCombo()
+        {
+            var me = User.GetUser();
+            var user = me.email;
+            return Ok(await categoriaService.GetListCategoriaCombo());
+        }
+
 
         [HttpPost("agregar-categoria")]
         public async Task<ActionResult> AddNewCategory(NewCategory request)

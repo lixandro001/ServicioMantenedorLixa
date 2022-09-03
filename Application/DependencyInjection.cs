@@ -15,11 +15,10 @@ namespace Application
         {
             // Services
             services.AddScoped<IAuthenticationService, AuthenticationService>()
-                    .AddScoped<ICategoriaService, CategoriaService>();
-            
+                    .AddScoped<ICategoriaService, CategoriaService>()
+                    .AddScoped<IProductoServices, ProductoServices>();
 
-
-
+             
             // FluentValidation
             services.AddControllers()
                 .AddFluentValidation(opt => {

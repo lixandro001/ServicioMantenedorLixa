@@ -12,9 +12,11 @@ namespace Application.Interfaces.IRepositories
    public interface ICategoriaRepository
    {
         Task<(ServiceStatus, string, Pagination<CategoriaResponse>)> GetListCategoria(string query, string user, int? page = 1);
+        Task<(ServiceStatus, string, List<CategoriaResponse>)> GetListCategoriaCombo();    
         Task<(ServiceStatus, string,  DetalleCategoriaResponse)> GetDetalleCategoria(int idcategoria);
         Task<(ServiceStatus, string, List<CategoriaResponseAll>)> GetExportarExcel();
         Task<(ServiceStatus, string)> AddNewCategory(NewCategory request);
         Task<(ServiceStatus, string)> DeleteCategory(DeleteCategory request);
+
    }
 }
