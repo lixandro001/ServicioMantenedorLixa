@@ -34,7 +34,7 @@ namespace Infrastructure
 
             #endregion
 
-           
+
 
             #region Services para consumir otro backend
 
@@ -60,8 +60,10 @@ namespace Infrastructure
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>()
                     //.AddScoped<IClientRepository, ClientRepository>()
                     .AddScoped<ICategoriaRepository, CategoriaRepository>()
-                    .AddScoped<IProductoRepository , ProductosRepository>();
-             
+                    .AddScoped<IProductoRepository, ProductosRepository>()
+                    .AddScoped<IConductorRepository, ConductorRepository>()
+                    ;
+
             #endregion
 
             return services;

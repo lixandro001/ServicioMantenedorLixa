@@ -16,7 +16,8 @@ namespace Application
             // Services
             services.AddScoped<IAuthenticationService, AuthenticationService>()
                     .AddScoped<ICategoriaService, CategoriaService>()
-                    .AddScoped<IProductoServices, ProductoServices>();
+                    .AddScoped<IProductoServices, ProductoServices>()
+                    .AddScoped<IConductorService, ConductorService>();
 
              
             // FluentValidation
