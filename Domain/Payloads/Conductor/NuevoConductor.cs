@@ -7,7 +7,7 @@ namespace Domain.Payloads.Conductor
    public class NuevoConductor
     {
         public int IdSexo { get; set; }
-        public int idusuario { get; set; }
+        public string idusuario { get; set; }
         public string Apellido { get; set; }
         public string NombreCompleto { get; set; }
         public string Dni { get; set; }

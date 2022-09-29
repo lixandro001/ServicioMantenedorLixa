@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces.IRepositories;
 using Domain.Enumerations;
 using Domain.Payloads.Conductor;
+using Domain.Payloads.Vehiculo;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace Infrastructure.Repositories
                     var Parameters = new SqlParameter[]
                     {
                         new SqlParameter{ ParameterName = "@IdSexo", SqlDbType = SqlDbType.Int,   SqlValue = request.IdSexo },
-                        new SqlParameter{ ParameterName = "@idusuario", SqlDbType = SqlDbType.Int,   SqlValue = request.idusuario },
+                        new SqlParameter{ ParameterName = "@idusuario", SqlDbType = SqlDbType.VarChar,Size=100,   SqlValue = request.idusuario },
                         new SqlParameter{ ParameterName = "@Apellido", SqlDbType = SqlDbType.VarChar, Size= 200, SqlValue = request.Apellido },
                         new SqlParameter{ ParameterName = "@NombreCompleto", SqlDbType = SqlDbType.VarChar, Size= 200, SqlValue = request.NombreCompleto },
                         new SqlParameter{ ParameterName = "@Dni", SqlDbType = SqlDbType.VarChar, Size= 200, SqlValue = request.Dni },
@@ -66,7 +67,44 @@ namespace Infrastructure.Repositories
                 return (ServiceStatus.InternalError, e.Message);
             }
         }
+         
 
-     
+        public async Task<(ServiceStatus, string)> AgregarVehiculo(NuevoVehiculo request)
+        {
+            try
+            {
+                using (var Ado = new Ado.SQLServer(connectionString))
+                {
+                    var Parameters = new SqlParameter[]
+                    {
+                        new SqlParameter{ ParameterName = "@usuario", SqlDbType = SqlDbType.VarChar,Size=100,  SqlValue = request.usuario },
+                        new SqlParameter{ ParameterName = "@modelo", SqlDbType = SqlDbType.VarChar,Size=100,   SqlValue = request.modelo },
+                        new SqlParameter{ ParameterName = "@placa", SqlDbType = SqlDbType.VarChar, Size= 200, SqlValue = request.placa },
+                        new SqlParameter{ ParameterName = "@fechaCompra", SqlDbType = SqlDbType.DateTime, SqlValue = request.fechaCompra },
+                        new SqlParameter{ ParameterName = "@serie", SqlDbType = SqlDbType.VarChar, Size= 200, SqlValue = request.serie },   
+                        new SqlParameter { ParameterName = "@mensaje", SqlDbType = SqlDbType.VarChar,Size=50, SqlValue = "", Direction= ParameterDirection.InputOutput},
+                        new SqlParameter { ParameterName = "@valor", SqlDbType = SqlDbType.Int,SqlValue=0, Direction= ParameterDirection.InputOutput},
+                    };
+
+                    var Dr = Ado.ExecNonQueryProc("usp_Guardar_Vehiculo", Parameters);
+                    var mensaje = Convert.ToString(Parameters[5].Value);
+                    var valor = Convert.ToInt32(Parameters[6].Value);
+
+                    if (valor == 0)
+                    {
+                        return (ServiceStatus.FailedValidation, mensaje);
+                    }
+
+                    await Task.Delay(1);
+                    return (ServiceStatus.Ok, mensaje);
+                }
+
+            }
+            catch (Exception e)
+            {
+                return (ServiceStatus.InternalError, e.Message);
+            }
+        }
+
     }
 }

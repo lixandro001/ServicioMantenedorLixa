@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.IServices;
 using Domain.Payloads.Conductor;
+using Domain.Payloads.Vehiculo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,6 +27,13 @@ namespace serviciosMantenimiento.Controllers
         {
             return Ok(await conductorService.AgregarConductor(request));
         }
+
+        [HttpPost("agregar-vehiculo")]
+        public async Task<ActionResult> AgregarVehiculo([FromBody] NuevoVehiculo request)
+        {
+            return Ok(await conductorService.AgregarVehiculo(request));
+        }
+
 
     }
 }

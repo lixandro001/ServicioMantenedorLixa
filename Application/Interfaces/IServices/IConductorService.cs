@@ -1,4 +1,5 @@
 ﻿using Domain.Payloads.Conductor;
+using Domain.Payloads.Vehiculo;
 using Domain.Results;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,7 @@ namespace Application.Interfaces.IServices
    public interface IConductorService
     {
         Task<MessageResult> AgregarConductor(NuevoConductor request);
+        Task<MessageResult> AgregarVehiculo(NuevoVehiculo request);
+         
     }
 }
